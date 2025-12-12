@@ -264,3 +264,13 @@ static func setter(
 		[PROPERTY_HINT_ARRAY_TYPE] if property_kind == PropertyKind.TYPED_ARRAY else [PROPERTY_HINT_DICTIONARY_TYPE] if property_kind == PropertyKind.TYPED_DICTIONARY else [],
 		[array_type] if property_kind == PropertyKind.TYPED_ARRAY else [key_type + ";" + value_type] if property_kind == PropertyKind.TYPED_DICTIONARY else []
 	)
+
+func _to_string() -> String:
+	var out: Dictionary[String, Variant] = {}
+	for prop in self.get_property_list():
+		if not (
+				prop.usage & PROPERTY_USAGE_INTERNAL
+				or prop.usage & PROPERTY_USAGE_CATEGORY
+				or prop.name == "script"):
+			out[prop.name] = self[prop.name]
+	return str(out)
