@@ -1,17 +1,5 @@
 class_name GDSInterfaceChecker extends Node
 
-func _ready() -> void:
-	var script = load("res://enemy.gd")
-
-	var interface : Array[MethodInfo] = [
-		MethodInfo.new("take_damage", 1, [""], [TYPE_INT], "", TYPE_NIL, [], PROPERTY_USAGE_DEFAULT),
-		# MethodInfo.void_method("take_damage", 1, [""], [TYPE_INT]),
-		MethodInfo.new("get_is_dead", 0, [], [], "", TYPE_BOOL, ["@is_dead_getter"]),
-		# MethodInfo.getter("is_dead", "", TYPE_BOOL)
-	]
-
-	print(is_implemented_interface(script, interface))
-
 static var IGNORED_METHOD_NAMES: Array[String] = [
 	"_static_init",
 	"_init",
